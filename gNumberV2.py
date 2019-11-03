@@ -50,29 +50,31 @@ def doubleGame():
 
 #主要逻辑
 def main():
+    sgNumber = 100   #单人游戏实现自动增加难度
     active = True
     while active:
         start = input('开始游戏?(y/n)')
         while start == 'y' or start == 'Y':
             game = input('单人(s)游戏还是双人(d)游戏？(s/d)')
             if game == 's' or game == 'S':
-                rnum = singleGame()
+                rnum = singleGame(sgNumber)
                 guess(rnum)
                 start = input('是否再来一次?(y/n)')
+                sgNumber += 20    #每次“再来一次”，数的范围增加20，实现增加难度的目的
             elif game == 'd' or game == 'D':
                 tnum = doubleGame()
                 guess(tnum)
                 start = input('是否再来一次?(y/n)')
             else:
                 print('输入有误，请重新输入')
-
-        if start in ['n', 'N']:
+        if start == 'n' or start == 'N':
             active = False
-            print('----退出游戏----')
+            print('---退出游戏---')
         if not start in ['y', 'Y', 'n', 'N']:
-            print('输入有误，请重新输入(y/n or Y/N)')
+            print('输入有误，请输入y/n or Y/N !')
 
-    
+
+
 
 if __name__ == "__main__":
     main()
